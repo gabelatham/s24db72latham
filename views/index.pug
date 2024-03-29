@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p This is #{title}
+  button(type="button" onclick="double()" class="btn btn-success") I am a Button
+  div(id="double") Up the amount
+
+  a(href="/zombies") Zombies Link
+
+  script.
+    var value = 0
+    var power = 1
+    function double(){
+      value++
+      power *= 2
+      document.getElementById("double").innerHTML = `Two to the power ${value} is ${power}`
+    }

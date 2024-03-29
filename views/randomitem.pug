@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  - let image_names = ["banana", "car", "duck", "pirate", "smile"]
+  - for(let i=0; i<3; i++){
+      - let r_num = Math.floor(Math.random()*5)
+      img(src=`/images/${image_names[r_num]}.jpg` alt=`${image_names[r_num]} image` height="300" width="auto")
+  - }
