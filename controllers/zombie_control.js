@@ -17,8 +17,21 @@ exports.zombie_detail = function(req, res){
 }
 
 // Handle Zombie create on POST
-exports.zombie_create_post = function(req, res){
-    res.send('NOT IMPLEMENTED: Zombie create POST')
+exports.zombie_create_post = async function(req, res){
+    console.log(req.body)
+    let document = new zombie()
+    document.zombie_type = req.body.zombie_type
+    document.height = req.body.height
+    document.turn_age = req.body.turn_age
+
+    try{
+        let result = await document.save();
+        res.send(result);
+    }catch(err){
+        res.status(500)
+        res.send(`{"error": ${err}}`)
+    }
+
 }
 
 // Handle Zombie delete from on DELETE
