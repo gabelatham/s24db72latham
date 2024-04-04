@@ -1,9 +1,8 @@
 var express = require('express');
+const zombie_controller = require('../controllers/zombie_control')
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('zombies', { title: 'Search Results Zombies' });
-});
+/* GET Zombies*/
+router.get('/', zombie_controller.zombie_view_all_page);
 
 module.exports = router;

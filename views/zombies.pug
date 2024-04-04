@@ -3,8 +3,9 @@ extends layout
 block content
   h1= title
 
-  - let results = [{zombie_type:"Runner", height:72, turn_age:2},{zombie_type:"Charger", height:78, turn_age:4},{zombie_type:"Climber", height:60, turn_age:1}]
+    - let zombies = results
+  //- let results = [{zombie_type:"Runner", height:72, turn_age:2},{zombie_type:"Charger", height:78, turn_age:4},{zombie_type:"Climber", height:60, turn_age:1}]
   div(class="container-fluid")
     div(class="row")
-    each item in results 
+    each item in zombies 
       div(class="col-sm-4") Type: #{item.zombie_type} Height: #{item.height} Turned Age: #{item.turn_age}
