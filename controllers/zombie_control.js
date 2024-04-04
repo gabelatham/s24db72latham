@@ -1,8 +1,14 @@
-var Zombie = require('../models/zombie')
+var zombie = require('../models/zombie')
 
 // List of All Zombies
-exports.zombie_list = function(req, res){
-    res.send('NOT IMPLEMENTED: Zombie List')
+exports.zombie_list = async function(req, res){
+    try{
+        theZombies = await zombie.find()
+        res.send(theZombies)
+    }catch(err){
+        res.status(500)
+        res.send(`"error":${err}}`)
+    }
 }
 
 // For a specific Zombie

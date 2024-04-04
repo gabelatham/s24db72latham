@@ -3,7 +3,7 @@ var router = express.Router();
 
 // Require controller modules.
 var api_controller = require('../controllers/api');
-var zombie_controller = require('../controllers/zombie_coll');
+var zombie_controller = require('../controllers/zombie_control');
 
 /// API ROUTE ///
 // GET resources base.
