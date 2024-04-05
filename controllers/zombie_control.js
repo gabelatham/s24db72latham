@@ -48,8 +48,21 @@ exports.zombie_delete = function(req, res){
 }
 
 // Handle Zombie Update from on PUT
-exports.zombie_update_put = function(req, res){
-    res.send('NOT IMPLEMENTED: Zombie Update Put' + req.params.id)
+exports.zombie_update_put = async function(req, res){
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
+    try{
+        let toUpdate = await zombie.findById(req.params.id)
+
+        if(req.body.zombie_type) toUpdate.zombie_type = req.body.zombie_type
+        if(req.body.height) toUpdate.height = req.body.height
+        if(req.body.turn_age) toUpdate.turn_age = req.body.turn_age
+        let result = await toUpdate.save()
+        console.log("Success " + result)
+        res.send(result)
+    }catch(err){
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+    }
 }
 
 // VIEWS
