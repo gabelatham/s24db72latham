@@ -46,7 +46,10 @@ async function recreateDB(){
 let reseed = true
 if(reseed) {
   recreateDB()
+}else{
+  console.log("Didn't Reseed")
 }
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

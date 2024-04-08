@@ -43,8 +43,16 @@ exports.zombie_create_post = async function(req, res){
 }
 
 // Handle Zombie delete from on DELETE
-exports.zombie_delete = function(req, res){
-    res.send('NOT IMPLEMENTED: Zombie delete DELETE' + req.params.id)
+exports.zombie_delete = async function(req, res){
+    console.log("delete " + req.params.id)
+    try{
+        result = await zombie.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    }catch(err){
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}`);
+    }
 }
 
 // Handle Zombie Update from on PUT
