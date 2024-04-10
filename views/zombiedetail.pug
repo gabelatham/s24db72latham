@@ -1,0 +1,20 @@
+extends layout
+block content
+  h1= title
+  - let zombieid = toShow._id
+  - let zombie_type = toShow.zombie_type
+  - let height = toShow.height
+  - let turn_age = toShow.turn_age
+  div
+    div.row
+      div(class='zombieAttr mr-3') Zombie ID is:
+      div #{zombieid}
+    div.row
+      div(class='zombieAttr mr-3') Zombie Type is:
+      div #{zombie_type}
+    div.row
+      div(class='zombieAttr mr-3') Zombie Height is:
+      div #{height}
+    div.row
+      div(class='zombieAttr mr-3') Zombie Turned Age is:
+      div #{turn_age}

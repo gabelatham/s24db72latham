@@ -21,7 +21,6 @@ exports.zombie_detail = async function(req, res){
         res.status(500)
         res.send(`{"error": document for id ${req.params.id} not found}`)
     }
-    //res.send('NOT IMPLEMENTED: Zombie Detail: ' + req.params.id)
 }
 
 // Handle Zombie create on POST
@@ -84,3 +83,29 @@ exports.zombie_view_all_page = async function(req, res){
         res.send(`"error":${err}`)
     }
 }
+
+// Handle a show one view with id specified by query
+exports.zombie_view_one_page = async function(req, res){
+    console.log("single view for id:" + req.query.id)
+    try{
+        result = await zombie.findById(req.query.id)
+        res.render('zombiedetail', {title: 'Zombie Detail', toShow: result})
+    }catch(err){
+        res.status(500)
+        res.send(`{"error": document for id ${req.query.id} not found}`)
+    }
+}
+
+// Handle building the view for creating a costume.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.zombie_create_page = function(req, res) {
+    console.log("create view")
+    try{
+        res.render('zombiecreate', { title: 'Zombie Create'});
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+    };

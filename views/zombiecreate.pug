@@ -1,0 +1,35 @@
+extends layout 
+
+block content 
+  h1= title 
+
+  form(id='ZombieForm', action="/resource/zombies", method="POST")
+    div.form-group 
+      label.zombieAttr(for="zombie_type") Zombie Type
+      input#zombie_type(type="text", name="zombie_type")
+
+    div.form-group 
+      label.zombieAttr(for="height") Zombie Height
+      input#height(type="text", name="height")
+
+    div.form-group 
+      label.zombieAttr(for="turn_age") Zombie Turned Age
+      input#turn_age(type="text", name="turn_age")
+    input(type="submit")
+  
+  script.
+    document.forms['ZombieForm'].addEventListener('submit', (event) => {
+      event.preventDefault()
+      // TODO: Show the form is being submitted
+      fetch(event.target.action, {
+        method: 'POST', body: new URLSearchParams(new FormData(event.target))
+      }).then((resp) => {
+        return resp.JSON
+      }).then((body) => {
+        alert("Save Succeeded")
+        // TODO: Handle Body
+      }).catch((error) => {
+        // TODO: Handle Error
+        alert("Save Failed " + error)
+      })
+    })
