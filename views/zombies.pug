@@ -6,6 +6,13 @@ block content
     - let zombies = results
   //- let results = [{zombie_type:"Runner", height:72, turn_age:2},{zombie_type:"Charger", height:78, turn_age:4},{zombie_type:"Climber", height:60, turn_age:1}]
   div(class="container-fluid")
-    div(class="row")
+    div(class="row m-1")
     each item in zombies 
-      div(class="col-sm-4") Type: #{item.zombie_type} Height: #{item.height} Turned Age: #{item.turn_age}
+      - let destination = `dispatch(\"/zombies/update?id=${item._id}\")`
+      div(class="col-sm-4") Type: #{item.zombie_type} Height: #{item.height} Turned Age: #{item.turn_age} 
+        button.btn(class="btn-primary ml-1", onclick=destination) Update
+    
+    script.
+      function dispatch(path){
+        window.location.href = path
+      }
