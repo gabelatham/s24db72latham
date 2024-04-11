@@ -96,9 +96,7 @@ exports.zombie_view_one_page = async function(req, res){
     }
 }
 
-// Handle building the view for creating a costume.
-// No body, no in path parameter, no query.
-// Does not need to be async
+// Handle a show create page
 exports.zombie_create_page = function(req, res) {
     console.log("create view")
     try{
@@ -108,4 +106,30 @@ exports.zombie_create_page = function(req, res) {
         res.status(500)
         res.send(`{'error': '${err}'}`);
     }
-    };
+};
+
+// Handle a show update page
+exports.zombie_update_page = async function(req, res) {
+    console.log("update view for item " + req.query.id)
+    try{
+        result = await zombie.findById(req.query.id)
+        res.render('zombieupdate', {title: 'Zombie Update', toShow: result})
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle a show delete page
+exports.zombie_delete_page = async function(req, res) {
+    console.log("delete view for item " + req.query.id)
+    try{
+        result = await zombie.findById(req.query.id)
+        res.render('zombiedelete', {title: 'Zombie Delete', toShow: result})
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
