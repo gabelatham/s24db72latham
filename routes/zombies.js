@@ -17,12 +17,12 @@ router.get('/', zombie_controller.zombie_view_all_page);
 router.get('/detail', zombie_controller.zombie_view_one_page)
 
 // GET create zombie page
-router.get('/create', zombie_controller.zombie_create_page)
+router.get('/create', secured, zombie_controller.zombie_create_page)
 
 // GET update zombie page
 router.get('/update', secured, zombie_controller.zombie_update_page)
 
 // GET delete zombie page
-router.get('/delete', zombie_controller.zombie_delete_page)
+router.get('/delete', secured, zombie_controller.zombie_delete_page)
 
 module.exports = router;

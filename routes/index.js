@@ -35,8 +35,9 @@ router.post('/register', function(req, res){
 })
 
 router.get('/login', function(req, res) {
-  res.render('login', {title: 'Zombie App Login', user: req.user});
+  res.render('login', {title: 'Zombie App Login', user: req.user, message: res.error});
 })
+
 router.post('/login', passport.authenticate('local'), function(req, res) {
   res.redirect('/');
 })
